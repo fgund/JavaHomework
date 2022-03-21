@@ -39,7 +39,7 @@ public class Card {
 
     @Override
     public int hashCode() {
-        return rank.ordinal() * (suit.ordinal() + 1);
+        return rank.ordinal() + (suit.ordinal()) * Rank.values().length;
     }
     
     public boolean isStandard(){
@@ -57,8 +57,7 @@ public class Card {
             throw new Exception("The card needs to be standard to compare");
         if(this.equals(other)){
             return 0;
-        } else if(this.suit.ordinal() > other.suit.ordinal() &&
-                  this.rank.ordinal() > other.rank.ordinal() ){
+        } else if(this.hashCode() > other.hashCode()){
                       return 1;
         } else{
             return -1;
